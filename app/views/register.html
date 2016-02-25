@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
+    <link type="text/css" rel="stylesheet" href="css/chat.css" >
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+    <title>Register- ChatXpress
+    </title>
+  </head>
+  <body ng-app>
+    
+    <div id="header">Chat Xpress
+    </div>
+    <form ng-submit="register()">
+    <div id="body">
+      <div id="fields">
+      Full Name
+      <input class="tbox2" type="text" name="fname"><br>
+      Password
+      <input class="tbox2" type="text" name="pass" ng-model="user.pass"><br>
+      Re-Password
+      <input class="tbox2" type="text" name="rpass"><br>
+      Email
+      <input class="tbox2" type="text" name="email" ng-model="user.email"><br>
+      <input type="submit">Sign Up
+    </div>
+  </body>
+</html>
+

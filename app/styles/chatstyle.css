@@ -1,0 +1,36 @@
+#header{
+		width:100%;
+		height:60px;
+		background-color:#044662;
+		margin-bottom:2px;
+		color:white;
+		font-size: 28px;
+		font-family: trebuchet,sans-serif;
+		padding-top:20px;
+		padding-left: 20px;
+		
+}
+
+body{
+	margin:0px;
+	background-color: #ccc
+}
+
+.button{
+		background-color: #e92d2d;
+		color:white;
+		width:80px;
+		height:40px;
+		font-size: 20px;
+		font-family: 'Myanmar text',sans-serif;
+		
+		text-align: center;
+		line-height: 48px;
+		border:1px solid #ba0404; 
+		display:inline-block;
+		cursor: pointer;
+}
+
+.button:hover{
+	background-color:#d62222;
+}
