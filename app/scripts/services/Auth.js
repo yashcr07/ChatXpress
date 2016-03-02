@@ -5,6 +5,7 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
 
   var Auth={
     register: function(user){
+      var deferred = $q.defer();
       ref.createUser({
         email: user.email,
         password: user.pass
@@ -12,11 +13,17 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
           if(error){
             console.log("Error creating User");
           }
-          else
-            console.log("Succesfully created user with uid:",userData.uid)
-        }
-      )}
-    ,
+          else{
+             var uref=new Firebase(FIREBASE_URL+'/Users/'+user.name)
+             uref.set({name:user.name,likes:0,email:user.email,status:'',dp:''});
+             console.log("Succesfully created user with uid:",userData.uid)
+             var message="Account successfuly created Hooman!!";
+             deferred.resolve();
+          };
+     
+    });
+      return deferred.promise;
+  },
     login: function(user){
       var deferred = $q.defer();
       ref.authWithPassword({
@@ -43,15 +50,6 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
     },*/
     user:{}
   };
-
-  /*$rootScope.$on('$firebaseSimpleLogin:login', function(e, user) {
-    console.log('logged in');
-    angular.copy(user, Auth.user);
-  });
-  $rootScope.$on('$firebaseSimpleLogin:logout', function() {
-    console.log('logged out');
-    angular.copy({}, Auth.user);
-  });*/
 
   return Auth;
 });

@@ -2,7 +2,7 @@
 <html>
   <head>
     <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
-    <link type="text/css" rel="stylesheet" href="css/chat.css" >
+    <link type="text/css" rel="stylesheet" href="styles/chat.css" >
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
     <title>Register- ChatXpress
     </title>
@@ -14,15 +14,14 @@
     <form ng-submit="register()">
     <div id="body">
       <div id="fields">
-      Full Name
-      <input class="tbox2" type="text" name="fname"><br>
-      Password
-      <input class="tbox2" type="text" name="pass" ng-model="user.pass"><br>
-      Re-Password
-      <input class="tbox2" type="text" name="rpass"><br>
-      Email
-      <input class="tbox2" type="text" name="email" ng-model="user.email"><br>
-      <input type="submit">Sign Up
+        <input class="tbox2" type="text" name="fname" placeholder="Username" required ng-model="user.name"><br>
+        <input class="tbox2" type="text" name="email" placeholder="Email"required ng-model="user.email"><br>
+        <input class="tbox2" type="text" name="pass" placeholder="Password"required ng-model="user.pass"><br>
+        <input class="tbox2" type="text" name="rpass" placeholder="Re-Password"><br>
+        <button type="submit" style="cursor:pointer">Sign Up</button>
+        <br><br>
+        <h3>{{message}}</h3>
+      </div>
     </div>
   </body>
 </html>

@@ -16,9 +16,10 @@ var app=angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'firebase'
+    'firebase',
+    'ui.bootstrap'
     
-  ])
+  ]);
   app.constant('FIREBASE_URL','https://chatxpress.firebaseio.com/');
   app.config(function ($routeProvider) {
     $routeProvider
