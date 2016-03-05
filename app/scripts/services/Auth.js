@@ -14,16 +14,16 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
             console.log("Error creating User");
           }
           else{
-             var uref=new Firebase(FIREBASE_URL+'/Users/'+user.name)
+             var uref=ref.child('/Users/'+user.name)
              uref.set({name:user.name,likes:0,email:user.email,status:'',dp:''});
              console.log("Succesfully created user with uid:",userData.uid)
              var message="Account successfuly created Hooman!!";
              deferred.resolve();
           };
-     
-    });
+        });
       return deferred.promise;
-  },
+    },
+
     login: function(user){
       var deferred = $q.defer();
       ref.authWithPassword({
@@ -39,15 +39,30 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
       })
       return deferred.promise;
     },
+
     logout: function(){
       auth.$logout();
     },
-    /*resolveUser: function(){
-      return auth.getCurrentUser();
+    
+    check:function(name){
+      var deferred=$q.defer();
+      var nameref=ref.child('Users/');
+      var u_msg='';
+      nameref.once("value",function(snapshot){
+        snapshot.forEach(function(nameSnapshot){
+          var key=nameSnapshot.key();
+          if(key==name){
+            console.log("User Exists")
+            u_msg='Username not available';
+            console.log(u_msg);
+            deferred.reject(u_msg);
+          }
+          u_msg='Cheers!! Name available'
+          deferred.resolve(u_msg);
+        }); 
+      });
+      return deferred.promise;
     },
-    signedIn:function(){
-      return !!Auth.user.provider;
-    },*/
     user:{}
   };
 

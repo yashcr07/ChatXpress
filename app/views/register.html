@@ -14,10 +14,10 @@
     <form ng-submit="register()">
     <div id="body">
       <div id="fields">
-        <input class="tbox2" type="text" name="fname" placeholder="Username" required ng-model="user.name"><br>
+        <input class="tbox2" type="text" name="fname" placeholder="Username" autocomplete="off" ng-keypress="uNameCheck()" ng-model-options="{debounce:1000}" required ng-model="user.name"><br>{{alert}}
         <input class="tbox2" type="text" name="email" placeholder="Email"required ng-model="user.email"><br>
-        <input class="tbox2" type="text" name="pass" placeholder="Password"required ng-model="user.pass"><br>
-        <input class="tbox2" type="text" name="rpass" placeholder="Re-Password"><br>
+        <input class="tbox2" type="password" name="pass" placeholder="Password"required ng-model="user.pass"><br>
+        <input class="tbox2" type="password" name="rpass" placeholder="Re-Password"><br>
         <button type="submit" style="cursor:pointer">Sign Up</button>
         <br><br>
         <h3>{{message}}</h3>
