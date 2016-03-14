@@ -2,13 +2,16 @@
 <html class="no-js">
   <head>
     <link type="text/css" rel="stylesheet" href="styles/chat.css" >
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" >
+    
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
 
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
 
     <meta charset="utf-8">
-    <title></title>
+    <title>ChatXpress</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -20,6 +23,9 @@
     <!-- endbuild -->
   </head>
   <body ng-app="chatXpressApp">
+    <div id="header">Chat Xpress
+    </div>
+    <div id="body">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -95,5 +101,6 @@
         
         <script src="scripts/services/Auth.js"></script>
         <!-- endbuild -->
+    </div>
 </body>
 </html>

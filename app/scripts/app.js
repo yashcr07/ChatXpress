@@ -21,6 +21,16 @@ var app=angular
     
   ]);
   app.constant('FIREBASE_URL','https://chatxpress.firebaseio.com/');
+
+  app.directive('alert',function(){
+    return{
+      restrict:"A",
+      link:function(scope,elem,attr){
+        
+      }
+    }
+  })
+
   app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {

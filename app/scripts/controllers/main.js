@@ -16,7 +16,6 @@ angular.module('chatXpressApp')
     ];
 
     $scope.go=function(path){
-      console.log("Gonjer")
       $location.path(path);
     };
   });

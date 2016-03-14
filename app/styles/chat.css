@@ -19,16 +19,7 @@
 body{
 	 margin:0px 0px 1px 1px;
 }
-.tbox
-{
-	border:0px;
-	width:250px;
-	height:35px;
-	border-radius: 2px;
-	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
-	font-size: 20px;
-	padding-left: 8px;
-}
+
 
 #uid
 {
@@ -36,18 +27,16 @@ body{
 	margin-left: 422px;
 	
 }
-#heading{
-	padding-left: 4px;
+.heading{
 	color: #ffffff;
 	padding-top: 150px;
-	margin-bottom: -200px;
+	padding-bottom: 50px;
 	font-family: 'Droid Sans', sans-serif;
-	text-align: center;
-	font-size: 48px;
+	font-size: 56px;
 	font-weight: normal;
 		
 }
-#login
+.login
 {
 	text-align: center;
 	font-family: 'Droid Sans', sans-serif;
@@ -57,19 +46,13 @@ body{
 	width: 100px;
 	border-radius: 2px;
 	font-size: 20px;
-	margin-left: 10px;
-	display:inline-block;
+	margin-left: 20px;
 	border:0px;
 	line-height: 40px;
 	padding-bottom: 1px;
 	cursor:pointer;
 }
 
-#data
-{
-	display:inline-block;
-	
-}
 
 #sign_up
 {
@@ -78,7 +61,6 @@ body{
 	color:white;
 	margin-left: 0px;
 	display:inline-block;
-	margin-left: 520px;
 	line-height: 40px;
 
 }
@@ -100,21 +82,5 @@ body{
 
 }
 
-#fields
-{
-	font-family: 'Droid Sans',sans-serif;
-	color:white;
-	letter-spacing: 1.5px;
-}
 
-.tbox2
-{
-	border:0px;
-	height:35px;
-	width: 300px;
-	border-radius: 2px;
-	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
-	font-size: 20px;
-	margin:5px;
-	
-}
+

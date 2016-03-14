@@ -2920,6 +2920,9 @@ select[multiple].input-lg {
     margin-bottom: 0;
     vertical-align: middle;
   }
+  .form-inline .form-group .form-control input {
+    width:300px;
+  }
   .form-inline .form-control {
     display: inline-block;
     width: auto;

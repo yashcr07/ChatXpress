@@ -1,28 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
-    <link type="text/css" rel="stylesheet" href="styles/chat.css" >
-    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
-    <title>Register- ChatXpress
-    </title>
-  </head>
-  <body ng-app>
-    
-    <div id="header">Chat Xpress
-    </div>
-    <form ng-submit="register()">
-    <div id="body">
-      <div id="fields">
-        <input class="tbox2" type="text" name="fname" placeholder="Username" autocomplete="off" ng-keypress="uNameCheck()" ng-model-options="{debounce:1000}" required ng-model="user.name"><br>{{alert}}
-        <input class="tbox2" type="text" name="email" placeholder="Email"required ng-model="user.email"><br>
-        <input class="tbox2" type="password" name="pass" placeholder="Password"required ng-model="user.pass"><br>
-        <input class="tbox2" type="password" name="rpass" placeholder="Re-Password"><br>
-        <button type="submit" style="cursor:pointer">Sign Up</button>
-        <br><br>
-        <h3>{{message}}</h3>
+<form ng-submit="register()" class="form-horizontal">
+  <br><br><br><br><br>
+  <div class="container-fluid">
+    <div class="row" >
+      <div class="form-group">
+        <div class="col-md-5">
+          <input class="form-control" type="text" name="fname" placeholder="Username" autocomplete="off" ng-keypress="uNameCheck()" required ng-model="user.name">
+          <div alert style="color:white">{{alert}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-5">
+          <input class="form-control" type="text" name="email" placeholder="Email"required ng-model="user.email">{{err}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-5">
+          <input class="form-control" type="password" name="pass" placeholder="Password"required ng-model="user.pass">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-5">
+          <input class="form-control" type="password" name="rpass" placeholder="Re-Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn pull-right " type="submit" >Sign Up</button>
       </div>
     </div>
-  </body>
-</html>
-
+    <h3>{{message}}</h3>
+  </div>
+</form>
+  

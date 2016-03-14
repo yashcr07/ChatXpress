@@ -11,7 +11,7 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
         password: user.pass
       },function(error,userData){
           if(error){
-            console.log("Error creating User");
+            deferred.reject(error.message)
           }
           else{
              var uref=ref.child('/Users/'+user.name)
@@ -53,11 +53,12 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
           var key=nameSnapshot.key();
           if(key==name){
             console.log("User Exists")
+            debugger;
             u_msg='Username not available';
             console.log(u_msg);
             deferred.reject(u_msg);
           }
-          u_msg='Cheers!! Name available'
+          u_msg='Available'
           deferred.resolve(u_msg);
         }); 
       });

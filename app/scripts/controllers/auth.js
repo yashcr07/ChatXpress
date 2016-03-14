@@ -8,11 +8,14 @@ app.controller('AuthCtrl',function($scope,Auth,$location,$timeout){
     }
 
     $scope.alert='';
-
+    $scope.err='';
     $scope.register=function(){
       Auth.register($scope.user,$scope).then(function(){
+        $scope.err='A';
         $scope.message="Account Successfully created Hooman !!"
         $scope.user.email=$scope.user.pass=$scope.user.name='';
+      },function(error){
+        $scope.err=error;
       });
     };
 

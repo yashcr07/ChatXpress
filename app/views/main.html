@@ -1,32 +1,42 @@
-<!DOCTYPE html> 
-<html>
-  <head>
-    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
-    <link type="text/css" rel="stylesheet" href="styles/chat.css" >
-    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
-    <title>ChatXpress</title>
-  </head>
-  
-  <body >
-    <div id="header">Chat Xpress
-    </div>
-    <div id="body">
-      <h1 id="heading">Let's Chat</h1>
-      <div id="data" ng-controller='AuthCtrl'>
-          <input class="tbox" id="uid" type="text"  ng-model="user.email" placeholder="Email">
-          <input class="tbox" id="pass" type="password" ng-model="user.pass" placeholder="Password">
-          <div id="login" ng-click="login()">Login
-          </div>
+
+<div ng-controller='AuthCtrl'>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 heading">
+        <center><h1 style="color:white;">Let's Chat</h1><center>
       </div>
-      
-      <br><br><br><br><br>
-      <div>
+    </div>
+    <div class="row">
+      <form class="form-inline">
+        <center>
+          <div class="col-md-12">
+            <form class="form-group">
+              <input class="form-control"  type="text"  ng-model="user.email" placeholder="Email">
+            </form>
+            <form class="form-group">
+              <input class="form-control"  type="password" ng-model="user.pass" placeholder="Password">
+            </form>
+            <button class="btn login" ng-click="login()">Login</button>
+          </div>
+        </center>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br><br><br>
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <center>
         <div id="sign_up">Not Registered?
         </div>
         <div id="sign_but" ng-click="go('/register')">Sign Up
         </div>
-      </div>
-    </div>
-  </body>
-</html>
+      </center>
+    </div> 
+  </div>
+</div>
+   
+ 
 
