@@ -1,45 +1,26 @@
-#header
-{
-  
-  background-color: #ffffff;
-  color: #4a1364;
-  font-family: 'Droid Sans', sans-serif;
-  font-size:48px;
-  line-height: 1.8;
-}
-
 
 #body
 {
-	
-	height:580px;
-	background-image: radial-gradient(circle,#772d99,#4a1364 40%,#4a1364 100%);
+	height:1000px;
+	background-image: radial-gradient(at top,#F7F8FA,#CBCDD1 40%,#CBCDD1 100%);
+	font-family: 'Slabo 27px', serif;
+	margin-top: 0px;
 }
-
-body{
-	 margin:0px 0px 1px 1px;
-}
-
-
 #uid
 {
 	margin-top: 250px;
 	margin-left: 422px;
-	
 }
 .heading{
-	color: #ffffff;
-	padding-top: 150px;
-	padding-bottom: 50px;
-	font-family: 'Droid Sans', sans-serif;
+	
+	padding-top: 50px;
+	padding-bottom: 30px;
 	font-size: 56px;
 	font-weight: normal;
-		
 }
 .login
 {
 	text-align: center;
-	font-family: 'Droid Sans', sans-serif;
 	color:white;
 	background-color: #046bb8;
 	height: 37px;
@@ -52,33 +33,12 @@ body{
 	padding-bottom: 1px;
 	cursor:pointer;
 }
-
-
 #sign_up
 {
-	font-family: 'Droid Sans', sans-serif;
 	font-size: 22px;
-	color:white;
 	margin-left: 0px;
 	display:inline-block;
 	line-height: 40px;
-
-}
-
-#sign_but
-{
-	height:60px;
-	width: 150px;
-	background-color: #1b1a1a;
-	font-size: 25px;
-	font-family: 'Droid Sans', sans-serif;
-	display: inline-block;
-	border-radius: 2px;
-	color:white;
-	text-align: center;
-	margin-left: 10px;
-	line-height: 55px;
-	cursor:pointer;
 
 }
 

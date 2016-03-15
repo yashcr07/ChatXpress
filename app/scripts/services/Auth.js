@@ -53,12 +53,15 @@ app.factory('Auth',function(FIREBASE_URL,$rootScope,$q){
           var key=nameSnapshot.key();
           if(key==name){
             console.log("User Exists")
-            debugger;
             u_msg='Username not available';
             console.log(u_msg);
             deferred.reject(u_msg);
           }
-          u_msg='Available'
+          
+          u_msg='Available';
+          console.log(name);
+          if(name==undefined)
+            u_msg='';
           deferred.resolve(u_msg);
         }); 
       });

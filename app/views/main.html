@@ -3,22 +3,30 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12 heading">
-        <center><h1 style="color:white;">Let's Chat</h1><center>
+        <center><h1>Let's Chat</h1><center>
       </div>
     </div>
     <div class="row">
-      <form class="form-inline">
-        <center>
-          <div class="col-md-12">
-            <form class="form-group">
-              <input class="form-control"  type="text"  ng-model="user.email" placeholder="Email">
-            </form>
-            <form class="form-group">
-              <input class="form-control"  type="password" ng-model="user.pass" placeholder="Password">
-            </form>
-            <button class="btn login" ng-click="login()">Login</button>
-          </div>
-        </center>
+      <center>
+        <div class="col-md-4 col-md-offset-4 ">
+          <p class="h4 text-center">Welcome to Chat Xpress. Please enter your username and password to continue.</p>
+        </div>
+      </center>
+    </div>
+    <br>
+    <div class="row">
+      <form>
+        <div class="col-md-3 col-md-offset-3">
+          <form class="form-group">
+            <input class="form-control"  type="text"  ng-model="user.email" placeholder="Email">
+          </form>
+        </div>
+        <div class="col-md-3">
+          <form class="form-group">
+            <input class="form-control"  type="password" ng-model="user.pass" placeholder="Password">
+          </form>
+        </div>
+        <button class="btn btn-info" ng-click="login()">Login</button>
       </form>
     </div>
   </div>
@@ -29,9 +37,9 @@
   <div class="row">
     <div class="col-md-12">
       <center>
-        <div id="sign_up">Not Registered?
+        <div id="sign_up">Not Registered?&nbsp&nbsp      
         </div>
-        <div id="sign_but" ng-click="go('/register')">Sign Up
+        <button class="btn btn-lg btn-danger" ng-click="go('/register')">Sign Up
         </div>
       </center>
     </div> 
