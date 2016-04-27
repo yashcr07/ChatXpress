@@ -29,14 +29,13 @@
     </div> -->
 
     <div id="body">
-      <br>
       <div class="row">
-        <div class="col-md-3 ">
+        <div class="col-md-3 col-sm-3">
         <h1 style="font-size:50px">Chat Xpress</h1>
         </div>
       </div>
-      <div class="container">
-      <div ng-view=""></div>
+      <div class="container-fluid" style="padding:0px">
+        <div ng-view=""></div>
       </div>
 
     
@@ -75,8 +74,10 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/auth.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/chat.js"></script>
          
         <script src="scripts/services/Auth.js"></script>
+        <script src="scripts/services/Chat.js"></script>
         <!-- endbuild -->
 
     </div>

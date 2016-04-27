@@ -1,3 +1,31 @@
-  <h1> Welcome {{user.name}} </h1>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3" style="background-color:#ffff99;height:85vh">
+      alu
+    </div>
+    <div class="col-md-6" style="background-color:#ff88cc;height:85vh">
+      lalu
+    </div>
+    <div class="col-md-3" style="background-color:#0099ff;padding:0px;height:85vh;position:relative">
+      <button class="btn btn-lg btn-info" style="margin-top:-70px;float:right" ng-click="logout()">Logout</button>
+      <div ng-repeat="(key,value) in list" >
+        <div ng-show=""class="col-md-12" ng-click="toggle(value.name)"style="height:70px;background-color:white;border-color:black;border:1px solid;">
+          {{value.name}}
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div ng-show="popup" id="c_box" ng-init="init()">
+    <div style="height: 28px;background-color:#aaffff;border-radius:5px 5px 0px 0px;">
+      {{name}}
+    </div>
+    <form ng-submit="send_msg(msg,name)">
+        <input name="msg_field" type="text" class="form-control" placeholder="Type a message" autocomplete="off" ng-model="msg" style="position:absolute;top:320px;">
+        <button class="btn btn-info" type="submit" style="position:absolute;top:320px;left:231px">Send</button>
+    </form>
+  </div>
+</div>
+
+<script

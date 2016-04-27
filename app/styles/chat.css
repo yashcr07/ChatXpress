@@ -1,8 +1,10 @@
 
 #body
 {
-	height:1000px;
+	height:100vh;
 	background-image: radial-gradient(at top,#F7F8FA,#CBCDD1 40%,#CBCDD1 100%);
+	background-repeat: no-repeat;
+  background-attachment: fixed;
 	font-family: 'Slabo 27px', serif;
 	margin-top: 0px;
 }
@@ -39,6 +41,20 @@
 	margin-left: 0px;
 	display:inline-block;
 	line-height: 40px;
+
+}
+
+#c_box{
+	position: absolute;
+	left: 715px;
+	top: 290px;
+	background-color: #ffffff;
+	height: 350px;
+	width: 285px;
+	border-radius: 5px;
+}
+
+#users{
 
 }
 

@@ -43,7 +43,7 @@ var app=angular
       })
       .when('/home',{
         templateUrl:'views/home.html',
-        controller:''
+        controller:'ChatCtrl'
       })
       .otherwise({
         redirectTo: '/'

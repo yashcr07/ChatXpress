@@ -9,11 +9,13 @@ app.controller('AuthCtrl',function($scope,Auth,$location,$timeout){
 
     $scope.alert='';
     $scope.err='';
+
     $scope.register=function(){
-      Auth.register($scope.user,$scope).then(function(){
-        $scope.err='A';
+      var frm=document.getElementsByName('reg')[0];
+      frm.reset();
+      Auth.register($scope.user).then(function(){
+        $scope.err='';
         $scope.message="Account Successfully created Hooman !!"
-        $scope.user.email=$scope.user.pass=$scope.user.name='';
       },function(error){
         $scope.err=error;
       });
@@ -26,6 +28,15 @@ app.controller('AuthCtrl',function($scope,Auth,$location,$timeout){
         console.log(error);
       });
     };
+
+    $scope.logout=function(){
+      Auth.logout().then(function(){
+        $location.path('/');
+      },function(error){
+        console.log(error);
+      });
+      
+    }
 
     $scope.uNameCheck=function(){
       
