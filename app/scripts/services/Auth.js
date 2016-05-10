@@ -80,6 +80,12 @@ app.factory('Auth', function($rootScope, FIREBASE_URL, $q, $firebaseAuth,$fireba
       return deferred.promise;
     },
 
+    addInterest:function(intrst,uid){
+      ref.child('/Users/'+uid).update({"interests":intrst.text});
+      ref.child('/Users/'+uid+'/interests').once(function(data){
+        return data.val();
+      })
+    },
     //checks authentication state
 
     resolveUser:function(){

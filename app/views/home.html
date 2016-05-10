@@ -2,15 +2,31 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3" style="background-color:#ffff99;height:85vh">
-      alu
+      <div class="row">
+        <div class="col-md-6" style="border-radius:100px;height:100px;width:100px;overflow:hidden;padding-left:0px">
+          <img src="{{user.profile.dp}}"></img>
+        </div>
+        <div class="col-md-8" style="font-size:20px;margin-top:25px">
+          {{user.profile.name}}
+          <br>
+          {{user.profile.email}}
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-md-12">
+          <tags-input ng-model="interests" on-tag-added="addInterest()">
+          </tags-input>
+        </div>
+      </div>   
     </div>
     <div class="col-md-6" style="background-color:#ff88cc;height:85vh">
-      lalu
+      
     </div>
     <div class="col-md-3" style="background-color:#0099ff;padding:0px;height:85vh;position:relative">
-      <button class="btn btn-lg btn-info" style="margin-top:-70px;float:right" ng-click="logout()">Logout</button>
+      <button ng-controller="AuthCtrl" class="btn btn-lg btn-info" style="margin-top:-70px;float:right" ng-click="logout()">Logout</button>
       <div ng-repeat="(key,value) in list" >
-        <div ng-show=""class="col-md-12" ng-click="toggle(value.name)"style="height:70px;background-color:white;border-color:black;border:1px solid;">
+        <div class="col-md-12" ng-if="user.profile.name!==value.name"ng-click="toggle(value.name)"style="height:70px;background-color:white;border-color:black;border:1px solid;">
           {{value.name}}
         </div>
       </div>
@@ -21,10 +37,28 @@
     <div style="height: 28px;background-color:#aaffff;border-radius:5px 5px 0px 0px;">
       {{name}}
     </div>
-    <form ng-submit="send_msg(msg,name)">
-        <input name="msg_field" type="text" class="form-control" placeholder="Type a message" autocomplete="off" ng-model="msg" style="position:absolute;top:320px;">
-        <button class="btn btn-info" type="submit" style="position:absolute;top:320px;left:231px">Send</button>
-    </form>
+    <div style="overflow:scroll;height:322px;">
+      <div ng-repeat="(key,value) in msgArray "  >
+        <div class="msgInfo" ng-if="value.to===name"align='right' style="margin-left:30%" >
+            <div id="msg"style="background:#C8F4B5;border-radius:5px;">{{value.message}}&nbsp;&nbsp;&nbsp;
+              <b id="time">{{value.time}}&nbsp;&nbsp;</b>
+            </div> 
+            <br>
+        </div>                             
+        <div class="msgInfo" ng-if="value.to===user.profile.name" align='left' style="margin-left:3px">
+          <div id="msg"style="background:LAVENDER;border-radius:5px;">{{value.message}}&nbsp;&nbsp;&nbsp;
+            <b id="time">{{value.time}}&nbsp;&nbsp;</b>
+          </div>
+          <br>
+        </div>                             
+      </div>
+    </div>
+    <div>
+      <form ng-submit="send_msg(msg,name)">
+          <input name="msg_field" type="text" class="form-control" placeholder="Type a message" autocomplete="off" ng-model="msg" style="position:absolute;top:320px;">
+          <button class="btn btn-info" type="submit" style="position:absolute;top:320px;left:231px">Send</button>
+      </form>
+    </div>
   </div>
 </div>
 

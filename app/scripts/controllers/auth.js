@@ -30,12 +30,9 @@ app.controller('AuthCtrl',function($scope,Auth,$location,$timeout){
     };
 
     $scope.logout=function(){
-      Auth.logout().then(function(){
-        $location.path('/');
-      },function(error){
-        console.log(error);
-      });
-      
+      Auth.logout();
+      $location.path('/');
+       
     }
 
     $scope.uNameCheck=function(){
