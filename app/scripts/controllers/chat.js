@@ -1,26 +1,29 @@
 'use strict'
 
-app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat){
+app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location){
 
     $scope.uid='';
     $scope.popup=false;
     $scope.name='';
     $scope.logout=Auth.logout;
     $scope.user=Auth.user;
-    $scope.interests={}
+    
+    
     
     $scope.init=function(){
       $scope.getId();
       $scope.load();
+      $scope.loadInterest();
     }
 
     $scope.getId=function(){
       $scope.uid=Auth.resolveUser().uid;
+      if(!$scope.uid)
+        $location.path('/');
       console.log($scope.uid);
     }
 
     $scope.send_msg=function(mssg,to){
-      $scope.number.push(5);
       $scope.msg='';  
       Chat.send_msg(mssg,to,$scope.user.profile.name);
     }
@@ -34,9 +37,16 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat){
     //Add user Interests
 
     $scope.addInterest=function(){
-      console.log($scope.interests);
-      var intr=$scope.interests;
-      $scope.interests=Auth.addInterest(intr,$scope.uid)
+      $timeout(function() {
+        Chat.addInterest($scope.interests,$scope.uid)
+      }, 100);
+      
+    }
+
+    //Load Interests
+
+    $scope.loadInterest=function(){
+      $scope.interests=Chat.loadInterest($scope.uid);
     }    
     //Toggles chat window
 
@@ -49,6 +59,20 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat){
       $scope.name=name;
       $scope.load_msg();
     }
+
+    $scope.uploadImage=function(files){
+      angular.forEach(files, function(flowFile){
+       var fileReader = new FileReader();
+        fileReader.onload = function (event) {
+          var uri = event.target.result;
+          $scope.image = uri;
+          console.log(uri);
+          Chat.uploadImage($scope.image,$scope.uid);
+        };
+        fileReader.readAsDataURL(flowFile.file)
+    });
+
+  };
 
     //Loads chat messages
 

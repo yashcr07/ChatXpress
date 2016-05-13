@@ -1,13 +1,20 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3" style="background-color:#ffff99;height:85vh">
-      <div class="row">
-        <div class="col-md-6" style="border-radius:100px;height:100px;width:100px;overflow:hidden;padding-left:0px">
-          <img src="{{user.profile.dp}}"></img>
+
+    <div class="col-md-3" style="background-color:#b1ade5;height:85vh">
+      <div class="row" style="margin-top:15px;">
+        <div class="col-md-6">
+          <div flow-init flow-files-added="uploadImage($files)">
+            <div style="border-radius:100px;height:100px;width:100px;overflow:hidden;padding-left:0px">
+              <img  ng-src="{{user.profile.dp}}" style="width:200px;height:auto;"></img>
+              <br><br><br><br>
+            </div>
+            <input type="file" value="Upload Image" style="margin:10px 0px 0px 12px;"flow-btn/>
+          </div>
         </div>
-        <div class="col-md-8" style="font-size:20px;margin-top:25px">
-          {{user.profile.name}}
+        <div class="col-md-6" style="font-size:20px;margin-top:25px">
+          {{user.profile.name|uppercase}}
           <br>
           {{user.profile.email}}
         </div>
@@ -20,11 +27,26 @@
         </div>
       </div>   
     </div>
-    <div class="col-md-6" style="background-color:#ff88cc;height:85vh">
-      
+    <div class="col-md-6" style="background-color:#bbeeaa;height:85vh">
     </div>
+
+
     <div class="col-md-3" style="background-color:#0099ff;padding:0px;height:85vh;position:relative">
       <button ng-controller="AuthCtrl" class="btn btn-lg btn-info" style="margin-top:-70px;float:right" ng-click="logout()">Logout</button>
+      <div class="row">
+        <center>
+          <div class="col-md-6" style="margin-top:10px">
+            <label class="radio_inline"  >
+              <input type="radio" name="inlineRadioOptions" value="all">&nbsp;&nbsp;<span class="h4">All</span>
+            </label>
+          </div>
+        </center>
+          <div class="col-md-6" style="margin-top:10px">
+            <label class="radio_inline"  >
+              <input type="radio" name="inlineRadioOptions" value="Interest">&nbsp;&nbsp;<span class="h4">Interest</span>
+            </label>
+          </div>
+      </div>
       <div ng-repeat="(key,value) in list" >
         <div class="col-md-12" ng-if="user.profile.name!==value.name"ng-click="toggle(value.name)"style="height:70px;background-color:white;border-color:black;border:1px solid;">
           {{value.name}}
@@ -34,7 +56,7 @@
   </div>
 
   <div ng-show="popup" id="c_box" ng-init="init()">
-    <div style="height: 28px;background-color:#aaffff;border-radius:5px 5px 0px 0px;">
+    <div style="height: 28px;background-color:#f6546a;border-radius:5px 5px 0px 0px;">
       {{name}}
     </div>
     <div style="overflow:scroll;height:322px;">

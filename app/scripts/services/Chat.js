@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter){
+app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter,FileReader){
 
   var ref=new Firebase(FIREBASE_URL);
   var s_msgArray=[];
@@ -17,10 +17,34 @@ app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter){
 
     load_users:function(){
       var userArray=$firebaseArray(ref.child('/Users'))
+      console.log(userArray);
       return userArray;
     },
 
-    //Senders msgs
+    uploadImage:function(url,uid){
+      console.log("Called"+url)
+      ref.child('Users/'+uid).update({dp:url})
+      
+    },
+
+    addInterest:function(intrst,uid){
+      var intr=[];
+      for(var i=0;i<intrst.length;i++)
+        intr.push(intrst[i].text);
+      ref.child('Users/'+uid+'/').update({"interests":intr});
+      /*ref.child('/Users/'+uid+'/interests').once(function(data){
+        return data.val();
+      })*/
+    },
+
+    loadInterest:function(uid){
+      var interest=[]
+      ref.child('Users/'+uid+"/interests").on('child_added',function(snapshot){
+        interest.push({text:snapshot.val()});
+        console.log(interest);
+      });
+      return interest;
+    },
 
     load_msg:function(name,frm){
       var deferred = $q.defer();
@@ -29,16 +53,14 @@ app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter){
       var s_msgArray=[];
       console.log("loading");
       sref.on('child_added',function(messages){
-          //console.log(messages.val())
-            s_msgArray.push({date:messages.val().date,from:messages.val().from,to:messages.val().to,message:messages.val().message,time:messages.val().time,timestamp:messages.val().timestamp});
+        s_msgArray.push({date:messages.val().date,from:messages.val().from,to:messages.val().to,message:messages.val().message,time:messages.val().time,timestamp:messages.val().timestamp});
       },function(error){
         deferred.reject(error);
       });
 
       rref.on('child_added',function(messages){
-        //console.log("load after send 2")
-            s_msgArray.push({date:messages.val().date,from:messages.val().from,to:messages.val().to,message:messages.val().message,time:messages.val().time,timestamp:messages.val().timestamp});
-          deferred.resolve(s_msgArray);
+        s_msgArray.push({date:messages.val().date,from:messages.val().from,to:messages.val().to,message:messages.val().message,time:messages.val().time,timestamp:messages.val().timestamp});
+      deferred.resolve(s_msgArray);
       },function(err){
         console.log(err);
       });

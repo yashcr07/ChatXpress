@@ -17,6 +17,9 @@ var app=angular
     'ngSanitize',
     'ngTouch',
     'ngTagsInput',
+    'flow',
+    'filereader',
+    'angular-filepicker',
     'firebase',
     'ui.bootstrap'
     

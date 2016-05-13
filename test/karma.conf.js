@@ -35,6 +35,11 @@ module.exports = function(config) {
       'bower_components/angularfire/dist/angularfire.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/ng-tags-input/ng-tags-input.min.js',
+      'bower_components/flow.js/dist/flow.js',
+      'bower_components/ng-flow/dist/ng-flow.js',
+      'bower_components/filepicker-js/filepicker.min.js',
+      'bower_components/angular-filepicker/dist/angular_filepicker.js',
+      'bower_components/angular-fileupload/angular-filereader.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
