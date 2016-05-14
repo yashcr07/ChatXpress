@@ -26,6 +26,30 @@ var app=angular
   ]);
   app.constant('FIREBASE_URL','https://chatxpress.firebaseio.com/');
 
+  app.filter('interest',function(){
+    return function(input,expr){
+      if(expr==="all")
+        return input;
+      var filteredList=[];
+      angular.forEach(input,function(user){
+        var ok=true;
+        angular.forEach(expr,function(cIntr){
+          if(!angular.isUndefined(user.interests)&&expr.length){
+            angular.forEach(user.interests,function(uIntr){
+              if(ok){
+                if(uIntr===cIntr.text){
+                  filteredList.push(user);
+                  ok=false;
+                }
+              }
+            });
+          }
+        });
+      });
+      return filteredList;
+    }
+  });
+
   app.filter('convert', function(){
     return function(input){
     var months={'01':"Jan",'02':"Feb",'03':"Mar",'04':"Apr",'05':"May",'06':"Jun",'07':"Jul",'08':"Aug",'09':"Sep",'10':"Oct",'11':"Nov",'12':"Dec"};   

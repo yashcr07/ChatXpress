@@ -4,10 +4,10 @@
 
     <div class="col-md-3" style="background-color:#b1ade5;height:85vh">
       <div class="row" style="margin-top:15px;">
-        <div class="col-md-6">
+         <div class="col-md-6">
           <div flow-init flow-files-added="uploadImage($files)">
             <div style="border-radius:100px;height:100px;width:100px;overflow:hidden;padding-left:0px">
-              <img  ng-src="{{user.profile.dp}}" style="width:200px;height:auto;"></img>
+              <img ng-src="{{user.profile.dp}}" style="width:100%;height:100%;">
               <br><br><br><br>
             </div>
             <input type="file" value="Upload Image" style="margin:10px 0px 0px 12px;"flow-btn/>
@@ -27,9 +27,9 @@
         </div>
       </div>   
     </div>
+
     <div class="col-md-6" style="background-color:#bbeeaa;height:85vh">
     </div>
-
 
     <div class="col-md-3" style="background-color:#0099ff;padding:0px;height:85vh;position:relative">
       <button ng-controller="AuthCtrl" class="btn btn-lg btn-info" style="margin-top:-70px;float:right" ng-click="logout()">Logout</button>
@@ -37,17 +37,17 @@
         <center>
           <div class="col-md-6" style="margin-top:10px">
             <label class="radio_inline"  >
-              <input type="radio" name="inlineRadioOptions" value="all">&nbsp;&nbsp;<span class="h4">All</span>
+              <input type="radio" name="inlineRadioOptions" ng-model="filteredUser" ng-Change="uFilter()" value="all" checked>&nbsp;&nbsp;<span class="h4">All</span>
             </label>
           </div>
         </center>
           <div class="col-md-6" style="margin-top:10px">
             <label class="radio_inline"  >
-              <input type="radio" name="inlineRadioOptions" value="Interest">&nbsp;&nbsp;<span class="h4">Interest</span>
+              <input type="radio" name="inlineRadioOptions" ng-model="filteredUser" ng-Change="uFilter()"value="interest">&nbsp;&nbsp;<span class="h4">Interest</span>
             </label>
           </div>
       </div>
-      <div ng-repeat="(key,value) in list" >
+      <div ng-repeat="(key,value) in list|interest:filteredUser" >
         <div class="col-md-12" ng-if="user.profile.name!==value.name"ng-click="toggle(value.name)"style="height:70px;background-color:white;border-color:black;border:1px solid;">
           {{value.name}}
         </div>

@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location){
+app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
 
     $scope.uid='';
     $scope.popup=false;
@@ -9,12 +9,16 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location){
     $scope.user=Auth.user;
     
     
-    
     $scope.init=function(){
       $scope.getId();
       $scope.load();
       $scope.loadInterest();
     }
+
+    $scope.uFilter=function(){
+      if($scope.filteredUser==="interest")
+        $scope.filteredUser=$scope.interests;
+    }    
 
     $scope.getId=function(){
       $scope.uid=Auth.resolveUser().uid;
@@ -43,6 +47,8 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location){
       
     }
 
+    //$filter('filter')($scope.list,$scope.alu);
+    
     //Load Interests
 
     $scope.loadInterest=function(){

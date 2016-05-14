@@ -41,7 +41,6 @@ app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter,Fi
       var interest=[]
       ref.child('Users/'+uid+"/interests").on('child_added',function(snapshot){
         interest.push({text:snapshot.val()});
-        console.log(interest);
       });
       return interest;
     },
