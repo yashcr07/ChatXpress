@@ -7,7 +7,7 @@
          <div class="col-md-6">
           <div flow-init flow-files-added="uploadImage($files)">
             <div style="border-radius:100px;height:100px;width:100px;overflow:hidden;padding-left:0px">
-              <img ng-src="{{user.profile.dp}}" style="width:100%;height:100%;">
+              <img ng-src="{{user.profile.dp}}" class="img-responsive">
               <br><br><br><br>
             </div>
             <input type="file" value="Upload Image" style="margin:10px 0px 0px 12px;"flow-btn/>
@@ -22,18 +22,23 @@
       <br><br>
       <div class="row">
         <div class="col-md-12">
-          <tags-input ng-model="interests" on-tag-added="addInterest()">
+          <tags-input ng-model="interests" on-tag-added="addInterest()" on-tag-removed="addInterest()">
           </tags-input>
         </div>
       </div>   
     </div>
-
     <div class="col-md-6" style="background-color:#bbeeaa;height:85vh">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
 
-    <div class="col-md-3" style="background-color:#0099ff;padding:0px;height:85vh;position:relative">
+    <div class="col-md-3" style="background-color:#0099ff;padding:0px;height:85vh;position:relative;">
       <button ng-controller="AuthCtrl" class="btn btn-lg btn-info" style="margin-top:-70px;float:right" ng-click="logout()">Logout</button>
-      <div class="row">
+      <div class="row" >
         <center>
           <div class="col-md-6" style="margin-top:10px">
             <label class="radio_inline"  >
@@ -49,7 +54,14 @@
       </div>
       <div ng-repeat="(key,value) in list|interest:filteredUser" >
         <div class="col-md-12" ng-if="user.profile.name!==value.name"ng-click="toggle(value.name)"style="height:70px;background-color:white;border-color:black;border:1px solid;">
-          {{value.name}}
+          <div class="row">
+            <div class="col-md-3" style="height:50px;width:50px;border-radius:100px;overflow:hidden">
+              <img ng-src="{{value.dp}}" class="img-responsive"> 
+            </div>
+            <div class="col-md-9 pull-right" style="font-size:24px">
+              {{value.name}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -60,7 +72,7 @@
       {{name}}
     </div>
     <div style="overflow:scroll;height:322px;">
-      <div ng-repeat="(key,value) in msgArray "  >
+      <div ng-repeat="(key,value) in msgArray |orderBy:'timestamp'">
         <div class="msgInfo" ng-if="value.to===name"align='right' style="margin-left:30%" >
             <div id="msg"style="background:#C8F4B5;border-radius:5px;">{{value.message}}&nbsp;&nbsp;&nbsp;
               <b id="time">{{value.time}}&nbsp;&nbsp;</b>

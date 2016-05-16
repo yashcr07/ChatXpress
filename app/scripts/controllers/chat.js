@@ -7,7 +7,7 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
     $scope.name='';
     $scope.logout=Auth.logout;
     $scope.user=Auth.user;
-    
+    $scope.filteredUser='all';
     
     $scope.init=function(){
       $scope.getId();
@@ -15,10 +15,15 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
       $scope.loadInterest();
     }
 
+    //Update Filtered User List
+
     $scope.uFilter=function(){
       if($scope.filteredUser==="interest")
         $scope.filteredUser=$scope.interests;
+      $scope.popup=false;
     }    
+
+    //Current user uid
 
     $scope.getId=function(){
       $scope.uid=Auth.resolveUser().uid;
@@ -28,7 +33,9 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
     }
 
     $scope.send_msg=function(mssg,to){
-      $scope.msg='';  
+      $scope.msg='';
+      if(mssg==="")  
+        return;
       Chat.send_msg(mssg,to,$scope.user.profile.name);
     }
 
@@ -57,13 +64,14 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
     //Toggles chat window
 
     $scope.toggle=function(name){
-      if($scope.name!==name){
-        $scope.popup=true;
+      if($scope.name===name){
+        $scope.popup=!$scope.popup;
       }
       else
-        $scope.popup=false;
+        $scope.popup=true;
       $scope.name=name;
-      $scope.load_msg();
+      if($scope.popup)
+        $scope.load_msg();
     }
 
     $scope.uploadImage=function(files){
@@ -72,7 +80,6 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
         fileReader.onload = function (event) {
           var uri = event.target.result;
           $scope.image = uri;
-          console.log(uri);
           Chat.uploadImage($scope.image,$scope.uid);
         };
         fileReader.readAsDataURL(flowFile.file)
@@ -85,11 +92,11 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
     $scope.load_msg=function(){
       $scope.msgArray=[];
       Chat.load_msg($scope.name,$scope.user.profile.name).then(function(arr){
+        console.log("load after send")
         $scope.msgArray=arr;
-        $scope.msgArray.sort(function(a,b){
+        /*$scope.msgArray.sort(function(a,b){
           return(a.timestamp-b.timestamp)
-        })
-        console.log($scope.msgArray);
+        })*/
       },function(error){
         console.log(error);
       });

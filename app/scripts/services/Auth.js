@@ -80,24 +80,7 @@ app.factory('Auth', function($rootScope, FIREBASE_URL, $q, $firebaseAuth,$fireba
       return deferred.promise;
     },
 
-    addInterest:function(intrst,uid){
-      var intr=[];
-      for(var i=0;i<intrst.length;i++)
-        intr.push(intrst[i].text);
-      ref.child('Users/'+uid+'/').update({"interests":intr});
-      /*ref.child('/Users/'+uid+'/interests').once(function(data){
-        return data.val();
-      })*/
-    },
-
-    loadInterest:function(uid){
-      var interest=[]
-      ref.child('Users/'+uid+"/interests").on('child_added',function(snapshot){
-        interest.push({text:snapshot.val()});
-        console.log(interest);
-      });
-      return interest;
-    },
+    
 
     //checks authentication state
 

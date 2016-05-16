@@ -17,12 +17,10 @@ app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter,Fi
 
     load_users:function(){
       var userArray=$firebaseArray(ref.child('/Users'))
-      console.log(userArray);
       return userArray;
     },
 
     uploadImage:function(url,uid){
-      console.log("Called"+url)
       ref.child('Users/'+uid).update({dp:url})
       
     },
@@ -46,24 +44,24 @@ app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter,Fi
     },
 
     load_msg:function(name,frm){
+
       var deferred = $q.defer();
       var sref=ref.child('/Chats/'+frm);
       var rref=ref.child('Chats/'+name);
       var s_msgArray=[];
       console.log("loading");
-      sref.on('child_added',function(messages){
-        s_msgArray.push({date:messages.val().date,from:messages.val().from,to:messages.val().to,message:messages.val().message,time:messages.val().time,timestamp:messages.val().timestamp});
-      },function(error){
-        deferred.reject(error);
-      });
-
       rref.on('child_added',function(messages){
+        console.log("alu")
         s_msgArray.push({date:messages.val().date,from:messages.val().from,to:messages.val().to,message:messages.val().message,time:messages.val().time,timestamp:messages.val().timestamp});
-      deferred.resolve(s_msgArray);
       },function(err){
         console.log(err);
       });
-      
+      sref.on('child_added',function(messages){
+        s_msgArray.push({date:messages.val().date,from:messages.val().from,to:messages.val().to,message:messages.val().message,time:messages.val().time,timestamp:messages.val().timestamp});
+        deferred.resolve(s_msgArray);
+      },function(error){
+        deferred.reject(error);
+      });
       return deferred.promise;
     }
   };

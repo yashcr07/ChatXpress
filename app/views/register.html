@@ -1,6 +1,11 @@
 <form name="reg" ng-submit="register()" class="form-horizontal">
-  <br><br><br><br><br>
+  <br><br><br>
   <div class="container">
+    <div class="row" style="margin-bottom:20px">
+      <div class="col-md-12 h2" ng-show="!message" align="center">
+        Please fill your details to begin !
+      </div>
+    </div>
     <div class="row" >
       <div class="form-group">
         <div class="col-md-4 col-md-offset-4">
@@ -31,8 +36,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <h3 class="text-center">{{message}}</h3>
+      <div class="col-md-12" ng-show="message">
+        <h3 class="text-center">Account successfully created {{user.name}} !</h3>
+        <br><br>
+        <h4 class="text-center">Click here to<a ng-href="#/"> Login</a> !</h4>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 
 <div ng-controller='AuthCtrl'>
-  <div class="container-fluid">
+  <div class="container-fluid" ng-init="authCheck()">
     <div class="row">
       <div class="col-md-12 heading">
         <center><h1>Let's Chat</h1><center>
@@ -37,7 +37,7 @@
   <div class="row">
     <div class="col-md-12">
       <center>
-        <div id="sign_up">Not Registered?&nbsp&nbsp      
+        <div id="sign_up">Not Registered?&nbsp;&nbsp;      
         </div>
         <button class="btn btn-lg btn-danger" ng-click="go('/register')">Sign Up
         </div>
