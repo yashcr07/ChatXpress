@@ -7,15 +7,22 @@ app.controller('AuthCtrl',function($scope,Auth,$location,$timeout){
       name:''
     }
 
+    $scope.loggedIn=Auth.signedIn;
     $scope.alert='';
     $scope.err='';
+    $scope.message=false;
+
+    $scope.authCheck=function(){
+      if($scope.loggedIn)
+        $location.path('/home');
+    }
 
     $scope.register=function(){
       var frm=document.getElementsByName('reg')[0];
       frm.reset();
       Auth.register($scope.user).then(function(){
         $scope.err='';
-        $scope.message="Account Successfully created Hooman !!"
+        $scope.message=true;
       },function(error){
         $scope.err=error;
       });
@@ -30,9 +37,8 @@ app.controller('AuthCtrl',function($scope,Auth,$location,$timeout){
     };
 
     $scope.logout=function(){
-      Auth.logout();
+      Auth.logout()
       $location.path('/');
-       
     }
 
     $scope.uNameCheck=function(){

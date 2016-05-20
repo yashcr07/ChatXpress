@@ -37,10 +37,14 @@ app.factory('Chat',function(FIREBASE_URL,$rootScope,$q,$firebaseArray,$filter,Fi
 
     loadInterest:function(uid){
       var interest=[]
+      var deferred=$q.defer();
       ref.child('Users/'+uid+"/interests").on('child_added',function(snapshot){
         interest.push({text:snapshot.val()});
+        deferred.resolve(interest);
+      },function(err){
+        deferred.reject(err);
       });
-      return interest;
+      return deferred.promise;
     },
 
     load_msg:function(name,frm){

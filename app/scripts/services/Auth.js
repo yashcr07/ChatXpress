@@ -41,6 +41,7 @@ app.factory('Auth', function($rootScope, FIREBASE_URL, $q, $firebaseAuth,$fireba
     },
 
     logout: function(){
+      console.log("logging out")
       var deferred=$q.defer();
       if(Auth.user.profile && Auth.user.accept) {
           Auth.user.profile.$destroy();
@@ -48,11 +49,13 @@ app.factory('Auth', function($rootScope, FIREBASE_URL, $q, $firebaseAuth,$fireba
           Auth.user.accept.$destroy();
            Auth.user.sessions.$destroy();
           angular.copy({}, Auth.user);
+          deferred.resolve();
       }
       ref.unauth();
       return deferred.promise;
     },
     
+
     // Checks for existing usernames
 
     check:function(name){
@@ -80,7 +83,9 @@ app.factory('Auth', function($rootScope, FIREBASE_URL, $q, $firebaseAuth,$fireba
       return deferred.promise;
     },
 
-    
+    signedIn:function(){
+      return !!Auth.user.provider
+    },
 
     //checks authentication state
 

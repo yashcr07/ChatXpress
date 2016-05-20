@@ -1,44 +1,46 @@
 
-<div class="container-fluid">
+<!-- <div class="loader" ng-show="">
+  <center>
+    <i class="fa fa-circle-o-notch slow-spin fa-4x fa-fw" ></i><br><br>
+    <span style="margin:20px;font-size:20px">Loading...</span>
+  <center>
+</div> -->
+<div class="container-fluid" >
   <div class="row">
-
-    <div class="col-md-3" style="background-color:#b1ade5;height:85vh">
+    <div class="col-md-3" style="background-color:#ffffff;height:85vh;border-right:1px solid;border-color:#C3C8C9;">
       <div class="row" style="margin-top:15px;">
-         <div class="col-md-6">
-          <div flow-init flow-files-added="uploadImage($files)">
-            <div style="border-radius:100px;height:100px;width:100px;overflow:hidden;padding-left:0px">
-              <img ng-src="{{user.profile.dp}}" class="img-responsive">
-              <br><br><br><br>
+        <div class="col-md-12">
+          <center>
+            <div flow-init flow-files-added="uploadImage($files)">
+              <img ng-src="{{user.profile.dp}}" class="dp">
+              <br><br><br>
+              <input type="file" value="Upload Image" style="margin:10px 0px 0px 12px;"flow-btn/>
             </div>
-            <input type="file" value="Upload Image" style="margin:10px 0px 0px 12px;"flow-btn/>
-          </div>
+          </center>
         </div>
-        <div class="col-md-6" style="font-size:20px;margin-top:25px">
-          {{user.profile.name|uppercase}}
-          <br>
-          {{user.profile.email}}
+      </div>
+      <div class="row">
+        <div class="col-md-12" align="center" >
+          <h3>{{user.profile.name|uppercase}}</h3>
+          <h5>{{user.profile.email}}</h5>
         </div>
       </div>
       <br><br>
       <div class="row">
         <div class="col-md-12">
-          <tags-input ng-model="interests" on-tag-added="addInterest()" on-tag-removed="addInterest()">
+          <tags-input ng-model="interests" max-tags="4" on-tag-added="addInterest()" on-tag-removed="addInterest()">
           </tags-input>
         </div>
       </div>   
     </div>
-    <div class="col-md-6" style="background-color:#bbeeaa;height:85vh">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <div class="col-md-6" style="background-color:#ffffff;height:85vh">
+      
     </div>
 
-    <div class="col-md-3" style="background-color:#0099ff;padding:0px;height:85vh;position:relative;">
-      <button ng-controller="AuthCtrl" class="btn btn-lg btn-info" style="margin-top:-70px;float:right" ng-click="logout()">Logout</button>
-      <div class="row" >
+    <button ng-controller="AuthCtrl" class="btn btn-lg btn-info pull-right" style="margin:-65px 0px 0px 20px" ng-click="logout()">Logout</button>
+
+    <div class="col-md-3" style="background-color:#ffffff;padding:0px;height:85vh;position:relative;overflow:scroll;overflow-x:hidden;">
+      <div class="row" id="filter">
         <center>
           <div class="col-md-6" style="margin-top:10px">
             <label class="radio_inline"  >
@@ -48,22 +50,28 @@
         </center>
           <div class="col-md-6" style="margin-top:10px">
             <label class="radio_inline"  >
-              <input type="radio" name="inlineRadioOptions" ng-model="filteredUser" ng-Change="uFilter()"value="interest">&nbsp;&nbsp;<span class="h4">Interest</span>
+              <input type="radio" name="inlineRadioOptions" ng-model="filteredUser" ng-Change="uFilter()" value="interest">&nbsp;&nbsp;<span class="h4">Interest</span>
             </label>
           </div>
       </div>
-      <div ng-repeat="(key,value) in list|interest:filteredUser" >
-        <div class="col-md-12" ng-if="user.profile.name!==value.name"ng-click="toggle(value.name)"style="height:70px;background-color:white;border-color:black;border:1px solid;">
-          <div class="row">
-            <div class="col-md-3" style="height:50px;width:50px;border-radius:100px;overflow:hidden">
-              <img ng-src="{{value.dp}}" class="img-responsive"> 
-            </div>
-            <div class="col-md-9 pull-right" style="font-size:24px">
-              {{value.name}}
-            </div>
+        <div style="position:relative;margin-top:55px">
+          <div ng-repeat="(key,value) in list|interest:filteredUser" >
+            <div class="col-md-12 users" ng-if="user.profile.name!==value.name"ng-click="toggle(value.name)"style="">
+              <div class="row">
+                <div class="col-md-3" >
+                  <img ng-src="{{value.dp}}" class="udp"> 
+                </div>
+                <div class="col-md-9 pull-right" style="font-size:24px;text-align:right;padding:10px;">
+                  {{value.name}}
+                  <div class="row" style="position:relative;text-align:left">
+                    <span class="interest" ng-repeat="int in value.interests track by $index">
+                      {{int}}&nbsp;
+                    </span>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 
@@ -71,7 +79,7 @@
     <div style="height: 28px;background-color:#f6546a;border-radius:5px 5px 0px 0px;">
       {{name}}
     </div>
-    <div style="overflow:scroll;height:322px;">
+    <div class="content"style="overflow:scroll;height:322px;">
       <div ng-repeat="(key,value) in msgArray |orderBy:'timestamp'">
         <div class="msgInfo" ng-if="value.to===name"align='right' style="margin-left:30%" >
             <div id="msg"style="background:#C8F4B5;border-radius:5px;">{{value.message}}&nbsp;&nbsp;&nbsp;
@@ -96,4 +104,4 @@
   </div>
 </div>
 
-<script
+

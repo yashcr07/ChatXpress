@@ -5,9 +5,17 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
     $scope.uid='';
     $scope.popup=false;
     $scope.name='';
-    $scope.logout=Auth.logout;
     $scope.user=Auth.user;
     $scope.filteredUser='all';
+    $scope.loader=true;
+    $scope.stat=Auth.signedIn;
+
+    $scope.authCheck=function(){
+      console.log($scope.stat);
+      if(angular.isUndefined($scope.uid))
+        $location.path('/')
+
+    }
     
     $scope.init=function(){
       $scope.getId();
@@ -27,8 +35,6 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
 
     $scope.getId=function(){
       $scope.uid=Auth.resolveUser().uid;
-      if(!$scope.uid)
-        $location.path('/');
       console.log($scope.uid);
     }
 
@@ -37,6 +43,7 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
       if(mssg==="")  
         return;
       Chat.send_msg(mssg,to,$scope.user.profile.name);
+      $scope.toTheBottom();
     }
 
     //Loads User List
@@ -59,7 +66,13 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
     //Load Interests
 
     $scope.loadInterest=function(){
-      $scope.interests=Chat.loadInterest($scope.uid);
+      Chat.loadInterest($scope.uid).then(function(intr){
+        $scope.interests=intr;
+        $scope.loader=false;
+      },function(err){
+        console.log(err);
+        $scope.loader=false;
+      });
     }    
     //Toggles chat window
 
@@ -83,9 +96,9 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
           Chat.uploadImage($scope.image,$scope.uid);
         };
         fileReader.readAsDataURL(flowFile.file)
-    });
+      });
 
-  };
+    };
 
     //Loads chat messages
 
@@ -102,5 +115,12 @@ app.controller('ChatCtrl',function($scope,$timeout,Auth,Chat,$location,$filter){
       });
 
     }
+
+    $scope.toTheBottom = function() {
+        
+        $timeout(function() {$(".content").animate({scrollTop:900*$scope.iterate},500)});
+        //$(".content").animate({scrollTop:$scope.scrolled},500);
+        console.log("toTheBottom called");
+  };
 })
 
